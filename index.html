@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>BTS Concert </title>
+
+<style>
+body {
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: linear-gradient(135deg, #f8f5f2, #fce7f3, #e5e7eb);
+  text-align: center;
+  color: #333;
+}
+
+/* Pantallas */
+.section {
+  display: none;
+  padding: 20px;
+
+  min-height: 100vh;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.active {
+  display: flex;
+}
+
+/* Vinilo */
+.vinyl {
+  width: 180px;
+  height: 180px;
+  margin: 30px auto;
+  animation: spin 4s linear infinite;
+}
+
+.vinyl img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 12px;
+  background: #d946ef;
+  color: white;
+  font-size: 16px;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+/* Inputs */
+input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin: 10px;
+}
+
+/* Bias grid */
+.bias-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.bias img {
+  width: 100%;
+  border-radius: 10px;
+}
+
+.bias {
+  background: white;
+  padding: 5px;
+  border-radius: 10px;
+}
+/* Ticket final */
+.ticket {
+  background: url("cutee.png");
+  background-size: cover;
+  background-position: center;
+
+  width: 90%;
+  max-width: 400px;
+  height: 700px;
+
+  margin: auto;
+  border-radius: 20px;
+
+  position: relative;
+}
+
+.dato {
+  position: absolute;
+  color: #4b3b5a;
+  font-size: 14px;
+  font-style: italic;
+  width: 220px;
+  text-align: left;
+}
+
+.nombre { top: 33%; left: 43%; }
+.cancion { top: 40%; left: 43%; }
+.momento { top: 47.5%; left: 43%; }
+.sentimiento { top: 54.5%; left: 43%; }
+.recuerdo { top: 62%; left: 43%; }
+
+.ticket-bias {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+
+  width: fit-content;
+  max-width: 85px;
+
+  padding: 3px 8px;
+
+  background: rgba(255,255,255,0.5);
+  backdrop-filter: blur(4px);
+
+  border-radius: 999px; /* 🔥 tipo pastillita */
+  font-size: 12px;
+
+  color: #4b3b5a;
+  text-align: right;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.credito {
+  position: absolute;
+  bottom: 0.50px;
+  left: 8px;   
+
+  font-size: 6px;
+  color: #4b3b5a;
+
+  opacity: 0.8;
+  font-style: italic;
+  letter-spacing: 0.3px;
+}}
+
+</style>
+</head>
+
+<body>
+
+<!-- INICIO -->
+<div class="section active" id="inicio">
+  <h1>💜 BTS Concert 💜</h1>
+  <div class="vinyl">
+  <img src="bities-removebg-preview.png" alt="vinilo">
+</div>
+  <p>Y al final... el mejor momento sí estaba por venir</p>
+  <button onclick="next('preguntas')">Entrar</button>
+</div>
+
+<!-- PREGUNTAS -->
+<div class="section" id="preguntas">
+  <h2>Tu experiencia 🎶</h2>
+
+  <input id="nombre" placeholder="Tu nombre">
+
+  <input id="cancion" placeholder="¿Canción favorita?">
+  <input id="momento" placeholder="¿Momento favorito?">
+  <input id="sentimiento" placeholder="¿Cómo te sentiste?">
+  <input id="recuerdo" placeholder="Recuerdo que te llevas">
+
+  <button onclick="next('bias')">Siguiente</button>
+</div>
+
+<!-- BIAS -->
+<div class="section" id="bias">
+  <h2>Elige tu bias 💜</h2>
+
+  <div class="bias-grid">
+    <div class="bias" onclick="selectBias('Namjoon')">
+  <img src="nam.jpg">
+  <p>Namjoon</p>
+</div>
+   <div class="bias" onclick="selectBias('Jin')">
+  <img src="jin.jpg">
+  <p>Jin</p>
+</div>
+    <div class="bias" onclick="selectBias('Yoongi')">
+  <img src="yoon.jpg">
+  <p>Yoongi</p>
+</div>
+   <div class="bias" onclick="selectBias('Hobi')">
+  <img src="hobi.jpg">
+  <p>Hobi</p>
+</div>
+   <div class="bias" onclick="selectBias('Jimin')">
+  <img src="jimin.jpg">
+  <p>Jimin</p>
+</div>
+    <div class="bias" onclick="selectBias('Taehyung')">
+  <img src="tae.jpg">
+  <p>Taehyung</p>
+</div>
+   <div class="bias" onclick="selectBias('Jungkook')">
+  <img src="jk.jpg">
+  <p>Jungkook</p>
+</div>
+  </div>
+
+  <button onclick="next('final')">Finalizar</button>
+</div>
+
+<!-- FINAL -->
+<div class="section" id="final">
+  <h2>🎟️ Tu recuerdo 💜</h2>
+
+  <div class="ticket" id="ticket">
+
+  <p class="dato nombre" id="tNombre"></p>
+  <p class="dato cancion" id="tCancion"></p>
+  <p class="dato momento" id="tMomento"></p>
+  <p class="dato sentimiento" id="tSentimiento"></p>
+  <p class="dato recuerdo" id="tRecuerdo"></p>
+  <p class="dato ticket-bias" id="tBias"></p>
+
+<p class="credito">Hecho con amor por Ig: @whosmonserrat_ </p>
+
+</div>
+
+  <p>Haz screenshot para guardarlo ✨</p>
+</div>
+
+<script>
+let bias = "";
+
+function next(id) {
+  document.querySelectorAll(".section").forEach(s => s.classList.remove("active"));
+  document.getElementById(id).classList.add("active");
+
+  if(id === "final"){
+    document.getElementById("tNombre").innerText =
+      document.getElementById("nombre").value;
+
+    document.getElementById("tCancion").innerText =
+      document.getElementById("cancion").value;
+
+    document.getElementById("tMomento").innerText =
+      document.getElementById("momento").value;
+
+    document.getElementById("tSentimiento").innerText =
+      document.getElementById("sentimiento").value;
+
+    document.getElementById("tRecuerdo").innerText =
+      document.getElementById("recuerdo").value;
+
+    document.getElementById("tBias").innerText = bias || "Sin elegir 💜";
+  }
+}
+
+function selectBias(name){
+  bias = name;
+  console.log("Elegiste:", name); // 
+}
+</script>
+
+</body>
+</html>
